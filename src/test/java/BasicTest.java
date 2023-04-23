@@ -3,15 +3,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public class BasicTest {
     protected WebDriver driver;
 
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/tetianahr/IdeaProjects/Lesson9/src/main/resources/drivers/chromedriver");
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);

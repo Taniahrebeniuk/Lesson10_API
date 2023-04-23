@@ -1,12 +1,12 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class LoginPage extends BasePage {
-
+public class LoginPage extends BasicPage {
     private WebElement logo = driver.findElement(By.className("header-logo"));
 
     private WebElement loginField = driver.findElement(By.id("login_field"));
@@ -17,7 +17,6 @@ public class LoginPage extends BasePage {
 
     private By errorFieldLocator = By.xpath("//div[contains(text(), 'Incorrect username or password')]");
 
-    public static String expectedErrorMessage = "Incorrect username or password.";
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -33,20 +32,5 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(password);
         loginButton.click();
         return new MainPage(driver);
-
-
-    }
-
-    public LoginPage negativeLogin(String login, String password) {
-        loginField.sendKeys(login);
-        passwordField.sendKeys(password);
-        loginButton.click();
-        return this;
-    }
-
-    public LoginPage validateErrorMessage(String errorTest) {
-        assertEquals(expectedErrorMessage, driver.findElement(errorFieldLocator).getText(), "Error message is invalid!");
-        return this;
-
     }
 }
